@@ -29,10 +29,10 @@ last' (_:xs) = last xs
 dec2int' :: [Int] -> Int
 dec2int' = foldl (\x y -> 10 * x + y) 0
 
-altMap :: (a -> b) -> (a -> b) -> [a] -> [b]
-altMap f g [] = []
-altMap f g [x] = [f x]
-altMap f g (x:y:xs) = f x : g y : altMap f g xs
+altmap :: (a -> b) -> (a -> b) -> [a] -> [b]
+altmap f g [] = []
+altmap f g [x] = [f x]
+altmap f g (x:y:xs) = f x : g y : altmap f g xs
 
 --define your own function(s) to help with luhn
 
@@ -44,4 +44,4 @@ luhnDouble n
 
 luhn :: [Int] -> Bool
 luhn xs =
-    sum (altMap id luhnDouble (reverse xs)) `mod` 10 == 0
+    sum (altmap id luhnDouble (reverse xs)) `mod` 10 == 0
